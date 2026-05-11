@@ -20,8 +20,6 @@ enum port {
 	Queenstown,
 	#[serde(rename = "S")]
 	Southampton,
-	#[serde(other)]
-	Missing,
 }
 
 #[derive(Debug, serde::Deserialize)]
@@ -49,7 +47,7 @@ struct RawRecord {
 	// #[serde(rename(deserialize = "Cabin"))]
 	// cabin: String,
 	#[serde(rename(deserialize = "Embarked"))]
-	embark: port,
+	embark: Option<port>,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -65,7 +63,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 	for result in reader.deserialize() {
 		let record: RawRecord = result?;
-		println!("{record:?}");
+		println!("{record:#?}");
 	}
 	Ok(())
 }
