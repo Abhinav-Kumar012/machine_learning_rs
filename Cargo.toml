@@ -1,5 +1,6 @@
 [workspace]
 resolver = "3"
+members = ["dataset_processing"]
 
 
 [workspace.lints.clippy]
@@ -7,6 +8,7 @@ all = "warn"
 pedantic = "warn"
 
 [workspace.dependencies]
+csv = "1.4.0"
 
 [profile.release]
 lto = true
